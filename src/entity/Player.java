@@ -1,9 +1,5 @@
-package entity;
+package src.entity;
 
-import main.GamePanel;
-import main.KeyHandler;
-
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,6 +7,9 @@ import java.awt.image.BufferedImage;
 
 
 import javax.imageio.ImageIO;
+
+import src.main.GamePanel;
+import src.main.KeyHandler;
 
 public class Player extends Entity{
     GamePanel gp;
