@@ -20,32 +20,32 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum =  new int[gp.maxWorldCol][gp.maxworldRow];
         getTileImage();
-        loadMap("gameEp/res/maps/world01.txt");
+        loadMap("res/maps/world01.txt");
 
     }
 
     public void getTileImage(){
         try{
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/grass.png"));
+            tile[0].image = ImageIO.read(new FileInputStream("res/tiles/grass.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/wall.png"));
+            tile[1].image = ImageIO.read(new FileInputStream("res/tiles/wall.png"));
             tile[1].collision = true;
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/ocean.png"));
+            tile[2].image = ImageIO.read(new FileInputStream("res/tiles/ocean.png"));
             tile[2].collision = true;
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/earth.png"));
+            tile[3].image = ImageIO.read(new FileInputStream("res/tiles/earth.png"));
 
             tile[4] = new Tile();
-            tile[4].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/tree.png"));
+            tile[4].image = ImageIO.read(new FileInputStream("res/tiles/tree.png"));
             tile[4].collision = true; 
 
             tile[5] = new Tile();
-            tile[5].image = ImageIO.read(new FileInputStream("gameEp/res/tiles/sand.png"));
+            tile[5].image = ImageIO.read(new FileInputStream("res/tiles/sand.png"));
 
         }
         catch(IOException e){
