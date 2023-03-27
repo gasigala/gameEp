@@ -76,7 +76,7 @@ public class TileManager {
             }
         }
         catch(Exception e){
-            System.out.println("error bozo");
+            System.out.println("error when trying to load map");
         }
     }
 

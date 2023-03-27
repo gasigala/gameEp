@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 
 public class OBJ_Chest extends SuperObject{
     public OBJ_Chest(){
-        name = "Door";
+        name = "Chest";
         try{
             image = ImageIO.read(new FileInputStream("res/objects/chest.png"));
 
