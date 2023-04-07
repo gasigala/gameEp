@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import src.entity.Player;
 import src.tile.TileManager;
 import src.object.SuperObject;
+import src.entity.Entity;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //System
     TileManager tileM = new TileManager(this);
-    KeyHandler  keyH = new KeyHandler();
+    KeyHandler  keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -45,6 +46,13 @@ public class GamePanel extends JPanel implements Runnable{
     //Entitys and objects
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+    public Entity npc[] = new Entity[20];
+
+    //pause menu and stuff
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+
 
     public GamePanel(){
 
@@ -59,7 +67,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame(){
         aSetter.setObject();
+        aSetter.setNPC();
         playMusic(0);
+        stopMusic();
+        gameState = playState;
     }
 
     public void startGameThread(){
@@ -99,7 +110,19 @@ public class GamePanel extends JPanel implements Runnable{
 }
 
     public void update(){
-        player.update();
+        if(gameState == playState){
+            player.update();
+            //npc update 
+            for(int i =0; i< npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
+        }
+        if(gameState == pauseState){
+            //nothing
+        }
+
     } 
 
     public void paintComponent(Graphics g){
@@ -117,6 +140,12 @@ public class GamePanel extends JPanel implements Runnable{
         for(int i =0; i < obj.length; i++){
             if(obj[i] != null){
                 obj[i].draw(g2, this);
+            }
+        }
+
+        for(int i =0; i < npc.length; i++){
+            if(npc[i] != null){
+                npc[i].draw(g2);
             }
         }
 
