@@ -11,6 +11,7 @@ public class NPC_Alan extends Entity{
         speed = 1;
 
         getImage();
+        setDialouge();
     }
 
     public void getImage(){
@@ -23,6 +24,15 @@ public class NPC_Alan extends Entity{
         left2 = setup("res/npc/oldman_left_2");
         right1 = setup("res/npc/oldman_right_1");
         right2 = setup("res/npc/oldman_right_2");
+
+    }
+
+    public void setDialouge(){
+        dialouges[0] = "Do you want an aderall?";
+        dialouges[1] = "Do you want an perky?";
+        dialouges[2] = "Charge it to the game";
+        dialouges[3] = "got put me here to spite me";
+        dialouges[4] = "sprite?";
 
     }
 
@@ -46,6 +56,10 @@ public class NPC_Alan extends Entity{
             actionLockCounter = 0;
         }
 
+    }
+
+    public void speak(){
+        super.speak();
     }
     
 }
