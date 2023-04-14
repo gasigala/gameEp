@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //System
     TileManager tileM = new TileManager(this);
-    KeyHandler  keyH = new KeyHandler(this);
+    public KeyHandler  keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -50,8 +50,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     //pause menu and stuff
     public int gameState;
+    public final int titleState =0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialougeState =3;
+
 
 
     public GamePanel(){
@@ -69,8 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         playMusic(0);
-        stopMusic();
-        gameState = playState;
+        gameState = titleState;
     }
 
     public void startGameThread(){
@@ -135,21 +137,27 @@ public class GamePanel extends JPanel implements Runnable{
         if(keyH.checkDrawTime){
             drawStart = System.nanoTime();
         }
+        if(gameState == titleState){
+            ui.draw(g2);
+        }
+        else{
 
-        tileM.draw(g2);
-        for(int i =0; i < obj.length; i++){
-            if(obj[i] != null){
-                obj[i].draw(g2, this);
+            tileM.draw(g2);
+            for(int i =0; i < obj.length; i++){
+                if(obj[i] != null){
+                    obj[i].draw(g2, this);
+                }
             }
+    
+            for(int i =0; i < npc.length; i++){
+                if(npc[i] != null){
+                    npc[i].draw(g2);
+                }
+            }
+    
+            player.draw(g2);
         }
 
-        for(int i =0; i < npc.length; i++){
-            if(npc[i] != null){
-                npc[i].draw(g2);
-            }
-        }
-
-        player.draw(g2);
 
         //DEBUG 
         if(keyH.checkDrawTime){

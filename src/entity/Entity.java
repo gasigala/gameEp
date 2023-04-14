@@ -24,6 +24,8 @@ public class Entity {
     public int spritecounter = 0;
     public int spriteNum = 1;
     public int actionLockCounter = 0;
+    String dialouges[] =new String[20];
+    int dialogueIndex = 0;
 
 
     public Rectangle solidArea = new Rectangle(0,0,48,48);
@@ -34,9 +36,33 @@ public class Entity {
         this.gp =gp;
     }
 
+
     public void setAction(){
 
     }
+    public void speak(){
+        if(dialouges[dialogueIndex] == null){
+            dialogueIndex =0;
+        }
+        gp.ui.currentDialouge = dialouges[dialogueIndex];
+        dialogueIndex++; 
+
+        switch(gp.player.direction){
+            case "up":
+                direction = "down";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+            case "down":
+                direction = "up";
+                break;
+        }
+    }
+
     public void update(){
         setAction();
 
